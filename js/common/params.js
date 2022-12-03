@@ -12,6 +12,7 @@ const REAL_ESTATE_TITLES = [
   '2-комнатная квартира, 38 м², Скулянка, Кишинёв'
 ];
 
+// Описания для объявления
 const REAL_ESTATE_DESCRIPTIONS = [
   'ЦЕНА ДЕЙСТВИТЕЛЬНА ПРИ БРОНИРОВАНИИ В НОЯБРЕ. ПОДЗЕМНАЯ ПАРКОВКА И УБОРКА ВКЛЮЧЕНЫ!',
   'БЕЗ КОМИССИИ. Уникальный угловой апартамент с завораживающим панорамными видами в знаковом комплексе премиум-класса Neva Towers. От собственника, сдаются впервые. ',
@@ -25,6 +26,7 @@ const REAL_ESTATE_DESCRIPTIONS = [
   'Для некурящих. Без домашних животных.'
 ];
 
+// Типы объявлений
 const REAL_ESTATE_TYPES = [
   'palace',
   'flat',
@@ -33,18 +35,14 @@ const REAL_ESTATE_TYPES = [
   'hotel'
 ];
 
-const CHECKINS = [
+// Время
+const TIMES = [
   '12:00',
   '13:00',
   '14:00'
 ];
 
-const CHECKOUTS = [
-  '12:00',
-  '13:00',
-  '14:00'
-];
-
+// Доп. условия
 const FEATURES = [
   'wifi',
   'dishwasher',
@@ -54,10 +52,14 @@ const FEATURES = [
   'conditioner',
 ];
 
+// Кол-во объектов
+const OBJECTS_QUANTITY = 10;
+
+// Временны фото
 const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-export { REAL_ESTATE_TITLES, REAL_ESTATE_DESCRIPTIONS, REAL_ESTATE_TYPES, CHECKINS, CHECKOUTS, FEATURES, PHOTOS };
+export { REAL_ESTATE_TITLES, REAL_ESTATE_DESCRIPTIONS, REAL_ESTATE_TYPES, TIMES, FEATURES, PHOTOS, OBJECTS_QUANTITY };
