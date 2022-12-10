@@ -55,7 +55,7 @@ const FEATURES = [
 // Кол-во объектов
 const OBJECTS_QUANTITY = 10;
 
-// Временны фото
+// Временные фото
 const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
