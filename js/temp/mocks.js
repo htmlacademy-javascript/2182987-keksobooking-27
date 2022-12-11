@@ -20,9 +20,9 @@ const generateRealEstates = (qty) => {
         guests: getRandomInt(0, 3),
         checkin: time,
         checkout: time,
-        features: FEATURES.slice(0, getRandomInt(1, FEATURES.length)),
+        features: FEATURES.slice(0, getRandomInt(1, FEATURES.length + 1)),
         description: REAL_ESTATE_DESCRIPTIONS[getRandomInt(0, REAL_ESTATE_DESCRIPTIONS.length)],
-        photos: PHOTOS.slice(0, getRandomInt(1, PHOTOS.length))
+        photos: PHOTOS.slice(0, getRandomInt(1, PHOTOS.length + 1))
       },
       location
     };
