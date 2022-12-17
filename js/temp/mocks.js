@@ -41,12 +41,12 @@ const PHOTOS = [
 // Генератор объектов
 const generateRealEstates = (qty) => {
   const realEstates = [];
-  for(let i = 0; i < qty; i++) {
+  Array.from(Array(qty).keys()).forEach((element, index) => {
     const location = createLocation();
     const time = TIMES[getRandomInt(0, TIMES.length)];
-    realEstates[i] = {
+    realEstates[index] = {
       author: {
-        avatar: `img/avatars/user${i < qty - 1 ? '0' : ''}${i + 1}.png`
+        avatar: `img/avatars/user${index < qty - 1 ? '0' : ''}${index + 1}.png`
       },
       offer : {
         title: REAL_ESTATE_TITLES[getRandomInt(0, REAL_ESTATE_TITLES.length)],
@@ -63,7 +63,7 @@ const generateRealEstates = (qty) => {
       },
       location
     };
-  }
+  });
   return realEstates;
 };
 
