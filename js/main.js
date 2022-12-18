@@ -1,9 +1,9 @@
 import {renderOffers} from './offers/render.js';
-import {makeFormsActive, makeFormsDisable} from './form/form.js';
+import {makeAdFormActive, makeFilterFormActive} from './form/form.js';
 
 renderOffers();
-makeFormsDisable();
 
 setTimeout(() => {
-  makeFormsActive();
+  makeAdFormActive();
+  makeFilterFormActive();
 }, 3000);

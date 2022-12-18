@@ -1,23 +1,33 @@
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
-const fieldsetsAndSelects = [
-  ...adForm.querySelectorAll('fieldset'),
-  ...filtersForm.querySelectorAll('fieldset, select')
-];
 
-const makeFormsDisable = () => {
+const makeAdFormDisable = () => {
   adForm.classList.add('ad-form--disabled');
-  fieldsetsAndSelects.forEach((fieldset) => {
+  adForm.querySelectorAll('fieldset').forEach((fieldset) => {
     fieldset.setAttribute('disabled', true);
   });
 };
 
-const makeFormsActive = () => {
+const makeAdFormActive = () => {
   adForm.classList.remove('ad-form--disabled');
-  fieldsetsAndSelects.forEach((fieldset) => {
+  adForm.querySelectorAll('fieldset').forEach((fieldset) => {
     fieldset.removeAttribute('disabled');
   });
 };
 
-export {makeFormsDisable, makeFormsActive};
+const makeFilterFormDisable = () => {
+  filtersForm.classList.add('map__filters--disabled');
+  filtersForm.querySelectorAll('fieldset, select').forEach((fieldset) => {
+    fieldset.setAttribute('disabled', true);
+  });
+};
+
+const makeFilterFormActive = () => {
+  filtersForm.classList.remove('map__filters--disabled');
+  filtersForm.querySelectorAll('fieldset, select').forEach((fieldset) => {
+    fieldset.removeAttribute('disabled');
+  });
+};
+
+export {makeAdFormDisable, makeAdFormActive, makeFilterFormDisable, makeFilterFormActive};
 
