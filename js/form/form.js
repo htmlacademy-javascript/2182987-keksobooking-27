@@ -1,5 +1,8 @@
+import {OfferTypes} from '../common/params.js';
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
+const priceInput = document.querySelector('#price');
+const typeSelect = document.querySelector('#type');
 
 const makeAdFormDisable = () => {
   adForm.classList.add('ad-form--disabled');
@@ -29,5 +32,14 @@ const makeFilterFormActive = () => {
   });
 };
 
-export {makeAdFormDisable, makeAdFormActive, makeFilterFormDisable, makeFilterFormActive};
+makeAdFormActive();
+makeFilterFormActive();
 
+const onTypeChange = (evt) => {
+  priceInput.setAttribute('placeholder', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
+  priceInput.setAttribute('min', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
+};
+
+typeSelect.addEventListener('change', onTypeChange);
+
+export {makeAdFormDisable, makeAdFormActive, makeFilterFormDisable, makeFilterFormActive};
