@@ -52,24 +52,43 @@ const FEATURES = [
 const OBJECTS_QUANTITY = 10;
 
 // Кол-во гостей и комнаты
-const GuestsOptionsQty = {
+const RoomsOptionsQty = {
   '1': [
-    'для 1 гостя'
+    '1'
   ],
   '2': [
-    'для 1 гостя',
-    'для 2 гостей'
+    '1',
+    '2'
   ],
   '3': [
-    'для 1 гостя',
-    'для 2 гостей',
-    'для 3 гостей'
+    '1',
+    '2',
+    '3'
   ],
   '100': [
-    'не для гостей'
+    '0'
   ]
 };
 
-export { REAL_ESTATE_TYPES, TIMES, FEATURES, OBJECTS_QUANTITY, OfferTypes, GuestsOptionsQty};
+const GuestsOptionsQty = {
+  '1': [
+    '1',
+    '2',
+    '3'
+  ],
+  '2': [
+    '2',
+    '3'
+  ],
+  '3': [
+    '3'
+  ],
+  '0': [
+    '100'
+  ]
+};
+
+
+export { REAL_ESTATE_TYPES, TIMES, FEATURES, OBJECTS_QUANTITY, OfferTypes, RoomsOptionsQty, GuestsOptionsQty};
 
 

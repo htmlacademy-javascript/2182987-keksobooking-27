@@ -3,6 +3,7 @@ import {renderOffers} from './offers/render.js';
 
 renderOffers();
 import './form/form.js';
+import './form/validation.js';
 
 /*
 setTimeout(() => {
