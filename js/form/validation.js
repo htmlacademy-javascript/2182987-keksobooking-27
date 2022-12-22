@@ -1,12 +1,9 @@
 import {RoomsOptionsQty, GuestsOptionsQty, OfferTypes} from '../common/params.js';
+import {priceInput, typeSelect} from './form-utils.js';
 
 const adForm = document.querySelector('.ad-form');
 const rooms = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
-const price = document.querySelector('#price');
-const type = document.querySelector('#type');
-const timein = document.querySelector('#timein');
-const timeout = document.querySelector('#timeout');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -23,6 +20,7 @@ const makeRoomsErrorText = () => `Для указанного количеств
   для комнат: ${GuestsOptionsQty[capacity.value]}.`;
 const makeGuestsErrorText = () => `Для указанного количества комнат, вы можете выбрать одно из следующих значений
   для кол-ва гостей: ${RoomsOptionsQty[rooms.value]}.`;
+
 
 // Добавление валидаторов
 pristine.addValidator(rooms,
@@ -51,38 +49,28 @@ capacity.addEventListener('change', onRoomCapacityChange);
 
 /*--- ВАЛИДАЦИЯ  МИНИМАЛЬНОЙ ЦЕНЫ  ---*/
 // Функция проверки
-const checkMinPrice = () => +OfferTypes[(type.value).toUpperCase()].MIN_VALUE <= price.value;
+const checkMinPrice = () => +OfferTypes[(typeSelect.value).toUpperCase()].MIN_VALUE <= priceInput.value;
 
 // Текст ошибки
-const createMinPriceErrorMsg = () => `Минимальная цена для категории ${OfferTypes[(type.value).toUpperCase()].NAME}:
-    ${OfferTypes[(type.value).toUpperCase()].MIN_VALUE}`;
+const createMinPriceErrorMsg = () => `Минимальная цена для категории ${OfferTypes[(typeSelect.value).toUpperCase()].NAME}:
+    ${OfferTypes[(typeSelect.value).toUpperCase()].MIN_VALUE}`;
 
 // Добавление валидатора
 pristine.addValidator(
-  price,
+  priceInput,
   checkMinPrice,
   createMinPriceErrorMsg
 );
 
 // Обновление валидации
 const onTypeChange = () => {
-  pristine.validate(price);
+  pristine.validate(priceInput);
 };
 
 // Добавление прослушки для смены типа
-type.addEventListener('change', onTypeChange);
+typeSelect.addEventListener('change', onTypeChange);
 /* ------ */
 
-// Синхрониция полей въезда и выезда
-[timein, timeout].forEach((select) => {
-  select.addEventListener('change', (evt) => {
-    if(evt.target === timein) {
-      timeout.value = timein.value;
-      return;
-    }
-    timein.value = timeout.value;
-  });
-});
 
 // Добавление обработчка
 adForm.addEventListener('submit', (evt) => {
