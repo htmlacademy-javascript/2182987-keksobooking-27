@@ -1,10 +1,13 @@
-import {OfferTypes} from '../common/params.js';
+import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
+import {mainMarker} from './map.js';
+
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
 const priceInput = document.querySelector('#price');
 const typeSelect = document.querySelector('#type');
 const timeinSelect = document.querySelector('#timein');
 const timeoutSelect = document.querySelector('#timeout');
+const addressInput = document.querySelector('#address');
 
 const makeAdFormDisable = () => {
   adForm.classList.add('ad-form--disabled');
@@ -56,4 +59,28 @@ const adChangeTimeListeners = () => {
   });
 };
 
-export {makeAdFormDisable, makeAdFormActive, makeFilterFormDisable, makeFilterFormActive, adChangeTypeListener, adChangeTimeListeners, adForm, priceInput, typeSelect };
+// Указание центра Токио
+const setDefaultAddressValue = () => {
+  addressInput.value = `${DEFAULT_COORDINATES.lat}, ${DEFAULT_COORDINATES.lng}`;
+};
+
+const addLMarkerMoveListener = () => {
+  mainMarker.on('moveend', (evt) => {
+    addressInput.value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
+  });
+};
+
+export {
+  makeAdFormDisable,
+  makeAdFormActive,
+  makeFilterFormDisable,
+  makeFilterFormActive,
+  adChangeTypeListener,
+  adChangeTimeListeners,
+  adForm,
+  priceInput,
+  typeSelect,
+  addressInput,
+  setDefaultAddressValue,
+  addLMarkerMoveListener
+};

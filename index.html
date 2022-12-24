@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кексобукинг</title>
@@ -98,7 +99,11 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide" disabled>
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text">
+          <input id="address" name="address" type="text"
+                 readonly
+                 required
+                 data-pristine-required-message="Это поле обязательно"
+          >
         </fieldset>
         <fieldset class="ad-form__element" disabled>
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -242,6 +247,7 @@
     </div>
   </template>
   <script src="vendor/pristine/pristine.min.js"></script>
+  <script src="vendor/leaflet/leaflet.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

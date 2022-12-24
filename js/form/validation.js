@@ -1,7 +1,6 @@
 import {RoomsOptionsQty, GuestsOptionsQty, OfferTypes} from '../common/params.js';
-import {priceInput, typeSelect} from './form-utils.js';
+import {priceInput, typeSelect, adForm} from './form-utils.js';
 
-const adForm = document.querySelector('.ad-form');
 const rooms = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 

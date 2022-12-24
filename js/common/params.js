@@ -88,7 +88,12 @@ const GuestsOptionsQty = {
   ]
 };
 
+const DEFAULT_COORDINATES = {
+  lat: 35.6750,
+  lng: 139.7500
+};
 
-export { REAL_ESTATE_TYPES, TIMES, FEATURES, OBJECTS_QUANTITY, OfferTypes, RoomsOptionsQty, GuestsOptionsQty};
+
+export { REAL_ESTATE_TYPES, TIMES, FEATURES, OBJECTS_QUANTITY, OfferTypes, RoomsOptionsQty, GuestsOptionsQty, DEFAULT_COORDINATES};
 
 

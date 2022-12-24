@@ -1,4 +1,2 @@
-import {renderOffers} from './offers/render.js';
+import './form/map.js';
 import './form/form.js';
-
-renderOffers();
