@@ -52,7 +52,7 @@ const FEATURES = [
 const OBJECTS_QUANTITY = 10;
 
 // Кол-во гостей и комнаты
-const RoomsOptionsQty = {
+const ROOMS_OPTIONS_QTY = {
   '1': [
     '1'
   ],
@@ -70,7 +70,7 @@ const RoomsOptionsQty = {
   ]
 };
 
-const GuestsOptionsQty = {
+const GUESTS_OPTIONS_QTY = {
   '1': [
     '1',
     '2',
@@ -100,10 +100,8 @@ export {
   TIMES, FEATURES,
   OBJECTS_QUANTITY,
   OfferTypes,
-  RoomsOptionsQty,
-  GuestsOptionsQty,
+  ROOMS_OPTIONS_QTY,
+  GUESTS_OPTIONS_QTY,
   DEFAULT_COORDINATES,
   MAX_PRICE
 };
-
-

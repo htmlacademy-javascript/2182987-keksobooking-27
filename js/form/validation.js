@@ -1,4 +1,4 @@
-import {RoomsOptionsQty, GuestsOptionsQty, OfferTypes} from '../common/params.js';
+import {ROOMS_OPTIONS_QTY, GUESTS_OPTIONS_QTY, OfferTypes} from '../common/params.js';
 import {priceInput, typeSelect, adForm} from './form-utils.js';
 
 const rooms = document.querySelector('#room_number');
@@ -16,18 +16,18 @@ const pristine = new Pristine(
 /* ВАЛИДАЦИЯ  СВЯЗАННЫХ ПОЛЕЙ - ГОСТЕЙ И КОМНАТ */
 // Тексты ошибок
 const makeRoomsErrorText = () => `Для указанного количества гостей, вы можете выбрать одно из следующих значений
-  для комнат: ${GuestsOptionsQty[capacity.value]}.`;
+  для комнат: ${GUESTS_OPTIONS_QTY[capacity.value]}.`;
 const makeGuestsErrorText = () => `Для указанного количества комнат, вы можете выбрать одно из следующих значений
-  для кол-ва гостей: ${RoomsOptionsQty[rooms.value]}.`;
+  для кол-ва гостей: ${ROOMS_OPTIONS_QTY[rooms.value]}.`;
 
 
 // Добавление валидаторов
 pristine.addValidator(rooms,
-  (value) => RoomsOptionsQty[value].includes(capacity.value),
+  (value) => ROOMS_OPTIONS_QTY[value].includes(capacity.value),
   makeRoomsErrorText
 );
 pristine.addValidator(capacity,
-  (value) => GuestsOptionsQty[value].includes(rooms.value),
+  (value) => GUESTS_OPTIONS_QTY[value].includes(rooms.value),
   makeGuestsErrorText
 );
 
