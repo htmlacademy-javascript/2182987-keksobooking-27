@@ -59,18 +59,5 @@ const onTypeChange = () => {
 
 // Добавление прослушки для смены типа
 typeSelect.addEventListener('change', onTypeChange);
-/* ------ */
-
-/*adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValidForm = pristine.validate();
-
-  if(!isValidForm) {
-    pristine.getErrors();
-    return;
-  }
-  // here api submit
-
-});*/
 
 export {pristine};
