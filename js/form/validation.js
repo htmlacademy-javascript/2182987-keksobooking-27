@@ -76,11 +76,11 @@ adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValidForm = pristine.validate();
 
-  if(isValidForm) {
-    evt.target.submit();
+  if(!isValidForm) {
+    pristine.getErrors();
     return;
   }
-  pristine.getErrors();
+  evt.target.submit();
 });
 
 export {pristine};
