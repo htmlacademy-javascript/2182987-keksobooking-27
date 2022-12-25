@@ -59,6 +59,7 @@ const mainMarker = L.marker(
 const resetMainMarker = () => {
   mainMarker.setLatLng(DEFAULT_COORDINATES);
   map.setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
+  map.closePopup();
 };
 
 mainMarker.addTo(map);
