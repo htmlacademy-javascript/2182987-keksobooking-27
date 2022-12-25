@@ -1,4 +1,4 @@
-import {makeAdFormActive} from './form-utils.js';
+import {makeAdFormActive, makeFilterFormActive} from './form-utils.js';
 import {generateRealEstates} from '../temp/mocks.js';
 import {DEFAULT_COORDINATES, OBJECTS_QUANTITY} from '../common/params.js';
 import {createBalloonContent} from '../offers/render.js';
@@ -7,6 +7,7 @@ import {createBalloonContent} from '../offers/render.js';
 const map = L.map('map-canvas')
   .on('load', () => {
     makeAdFormActive();
+    makeFilterFormActive();
   })
   .setView(DEFAULT_COORDINATES, 12.5);
 

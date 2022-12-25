@@ -82,3 +82,5 @@ adForm.addEventListener('submit', (evt) => {
   }
   pristine.getErrors();
 });
+
+export {pristine};

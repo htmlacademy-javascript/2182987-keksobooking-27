@@ -93,7 +93,17 @@ const DEFAULT_COORDINATES = {
   lng: 139.7500
 };
 
+const MAX_PRICE = 100000;
 
-export { REAL_ESTATE_TYPES, TIMES, FEATURES, OBJECTS_QUANTITY, OfferTypes, RoomsOptionsQty, GuestsOptionsQty, DEFAULT_COORDINATES};
+export {
+  REAL_ESTATE_TYPES,
+  TIMES, FEATURES,
+  OBJECTS_QUANTITY,
+  OfferTypes,
+  RoomsOptionsQty,
+  GuestsOptionsQty,
+  DEFAULT_COORDINATES,
+  MAX_PRICE
+};
 
 

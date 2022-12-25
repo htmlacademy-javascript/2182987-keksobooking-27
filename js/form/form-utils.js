@@ -1,5 +1,6 @@
 import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
 import {mainMarker} from './map.js';
+import {updatePriceSlider} from './priceSlider.js';
 
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
@@ -8,6 +9,7 @@ const typeSelect = document.querySelector('#type');
 const timeinSelect = document.querySelector('#timein');
 const timeoutSelect = document.querySelector('#timeout');
 const addressInput = document.querySelector('#address');
+const priceSlider = document.querySelector('.ad-form__slider');
 
 const makeAdFormDisable = () => {
   adForm.classList.add('ad-form--disabled');
@@ -40,6 +42,7 @@ const makeFilterFormActive = () => {
 const onTypeChange = (evt) => {
   priceInput.setAttribute('placeholder', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
   priceInput.setAttribute('min', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
+  updatePriceSlider(+priceInput.getAttribute('min'));
 };
 
 const adChangeTypeListener = () => {
@@ -64,11 +67,26 @@ const setDefaultAddressValue = () => {
   addressInput.value = `${DEFAULT_COORDINATES.lat}, ${DEFAULT_COORDINATES.lng}`;
 };
 
+// Изменение позиции маркера
 const addLMarkerMoveListener = () => {
-  mainMarker.on('moveend', (evt) => {
+  mainMarker.on('move', (evt) => {
     addressInput.value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
   });
 };
+
+/* СВЯЗЫВАНИЕ ПОЛЗУНКА И ПОЛЯ ЦЕНЫ */
+const addChangePriceSliderListener = () => {
+  priceSlider.noUiSlider.on('slide', () => {
+    priceInput.value = +priceSlider.noUiSlider.get() ? +priceSlider.noUiSlider.get() : '';
+  });
+};
+
+const addChangePriceInputListener = () => {
+  priceInput.addEventListener('input', () => {
+    updatePriceSlider(+priceInput.getAttribute('min'));
+  });
+};
+
 
 export {
   makeAdFormDisable,
@@ -81,6 +99,9 @@ export {
   priceInput,
   typeSelect,
   addressInput,
+  priceSlider,
   setDefaultAddressValue,
-  addLMarkerMoveListener
+  addLMarkerMoveListener,
+  addChangePriceSliderListener,
+  addChangePriceInputListener
 };
