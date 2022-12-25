@@ -2,7 +2,9 @@ import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
 import {mainMarker, resetMainMarker} from './map.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
+import {showSuccessModal} from './modals.js';
 
+const body = document.querySelector('body');
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
 const priceInput = document.querySelector('#price');
@@ -12,6 +14,7 @@ const timeoutSelect = document.querySelector('#timeout');
 const addressInput = document.querySelector('#address');
 const priceSlider = document.querySelector('.ad-form__slider');
 const resetBtn = document.querySelector('.ad-form__reset');
+
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -134,6 +137,7 @@ const addOfferFormSubmitListener = () => {
       evt,
       () => {
         adFromReset();
+        showSuccessModal();
       },
       () => {
       });
@@ -141,6 +145,7 @@ const addOfferFormSubmitListener = () => {
 };
 
 export {
+  body,
   makeAdFormDisable,
   makeAdFormActive,
   makeFilterFormDisable,
