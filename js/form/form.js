@@ -4,7 +4,9 @@ import {
   setDefaultAddressValue,
   addLMarkerMoveListener,
   addChangePriceSliderListener,
-  addChangePriceInputListener
+  addChangePriceInputListener,
+  addOfferFormSubmitListener,
+  addResetListener
 } from './form-utils.js';
 import './validation.js';
 import {initPriceSlider} from './priceSlider.js';
@@ -27,3 +29,9 @@ initPriceSlider();
 // Прослушка изменений цены (ползунок и поле цены)
 addChangePriceSliderListener();
 addChangePriceInputListener();
+
+// Отправка формы
+addOfferFormSubmitListener();
+
+// Очистка формы
+addResetListener();

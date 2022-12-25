@@ -1,6 +1,7 @@
 import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
-import {mainMarker} from './map.js';
-import {updatePriceSlider} from './priceSlider.js';
+import {mainMarker, resetMainMarker} from './map.js';
+import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
+import {sendOfferForm} from './api.js';
 
 const adForm = document.querySelector('.ad-form');
 const filtersForm = document.querySelector('.map__filters');
@@ -10,6 +11,17 @@ const timeinSelect = document.querySelector('#timein');
 const timeoutSelect = document.querySelector('#timeout');
 const addressInput = document.querySelector('#address');
 const priceSlider = document.querySelector('.ad-form__slider');
+const resetBtn = document.querySelector('.ad-form__reset');
+
+// Инициализация валидации
+const pristine = new Pristine(
+  adForm, {
+    classTo: 'ad-form__element',
+    errorTextParent: 'ad-form__element',
+    errorClass: 'ad-form__element--invalid',
+  },
+  true);
+
 
 const makeAdFormDisable = () => {
   adForm.classList.add('ad-form--disabled');
@@ -87,6 +99,46 @@ const addChangePriceInputListener = () => {
   });
 };
 
+const resePriceInput = () => {
+  priceInput.setAttribute('placeholder', OfferTypes.FLAT.MIN_VALUE);
+  priceInput.setAttribute('min', OfferTypes.FLAT.MIN_VALUE);
+};
+
+const adFromReset = () => {
+  adForm.reset();
+  filtersForm.reset();
+  pristine.reset();
+  resetPriceSlider();
+  setDefaultAddressValue();
+  resetMainMarker();
+  resePriceInput();
+};
+
+const addResetListener = () => {
+  resetBtn.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    adFromReset();
+  });
+};
+
+const addOfferFormSubmitListener = () => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValidForm = pristine.validate();
+
+    if(!isValidForm) {
+      pristine.getErrors();
+      return;
+    }
+    sendOfferForm(
+      evt,
+      () => {
+        adFromReset();
+      },
+      () => {
+      });
+  });
+};
 
 export {
   makeAdFormDisable,
@@ -103,5 +155,8 @@ export {
   setDefaultAddressValue,
   addLMarkerMoveListener,
   addChangePriceSliderListener,
-  addChangePriceInputListener
+  addChangePriceInputListener,
+  addOfferFormSubmitListener,
+  addResetListener,
+  pristine
 };

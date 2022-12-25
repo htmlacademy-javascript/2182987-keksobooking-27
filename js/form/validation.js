@@ -1,17 +1,8 @@
 import {ROOMS_OPTIONS_QTY, GUESTS_OPTIONS_QTY, OfferTypes} from '../common/params.js';
-import {priceInput, typeSelect, adForm} from './form-utils.js';
+import {priceInput, typeSelect, pristine} from './form-utils.js';
 
 const rooms = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
-
-// Инициализация валидации
-const pristine = new Pristine(
-  adForm, {
-    classTo: 'ad-form__element',
-    errorTextParent: 'ad-form__element',
-    errorClass: 'ad-form__element--invalid',
-  },
-  true);
 
 /* ВАЛИДАЦИЯ  СВЯЗАННЫХ ПОЛЕЙ - ГОСТЕЙ И КОМНАТ */
 // Тексты ошибок
@@ -70,9 +61,7 @@ const onTypeChange = () => {
 typeSelect.addEventListener('change', onTypeChange);
 /* ------ */
 
-
-// Добавление обработчка
-adForm.addEventListener('submit', (evt) => {
+/*adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValidForm = pristine.validate();
 
@@ -80,7 +69,8 @@ adForm.addEventListener('submit', (evt) => {
     pristine.getErrors();
     return;
   }
-  evt.target.submit();
-});
+  // here api submit
+
+});*/
 
 export {pristine};

@@ -1,16 +1,22 @@
 import {MAX_PRICE, OfferTypes} from '../common/params.js';
 import {priceSlider, priceInput} from './form-utils.js';
 
+const DEFAULT_SLIDER_OPTIONS = {
+  start: 0,
+  step: 1,
+  connect: 'lower',
+  range: {
+    'min': OfferTypes.FLAT.MIN_VALUE,
+    'max': MAX_PRICE
+  }
+};
+
 const initPriceSlider = () => {
-  noUiSlider.create(priceSlider, {
-    start: 0,
-    step: 1,
-    connect: 'lower',
-    range: {
-      'min': OfferTypes.FLAT.MIN_VALUE,
-      'max': MAX_PRICE
-    }
-  });
+  noUiSlider.create(priceSlider, DEFAULT_SLIDER_OPTIONS);
+};
+
+const resetPriceSlider = () => {
+  priceSlider.noUiSlider.updateOptions(DEFAULT_SLIDER_OPTIONS);
 };
 
 const updatePriceSlider = (minPrice) => {
@@ -24,4 +30,4 @@ const updatePriceSlider = (minPrice) => {
   });
 };
 
-export {initPriceSlider, updatePriceSlider};
+export {initPriceSlider, updatePriceSlider, resetPriceSlider};

@@ -1,6 +1,6 @@
 import {makeAdFormActive, makeFilterFormActive} from './form-utils.js';
 import {generateRealEstates} from '../temp/mocks.js';
-import {DEFAULT_COORDINATES, OBJECTS_QUANTITY} from '../common/params.js';
+import {DEFAULT_COORDINATES, OBJECTS_QUANTITY, DEFAULT_ZOOM} from '../common/params.js';
 import {createBalloonContent} from '../offers/render.js';
 
 // Иницализация работы с координарами (Leaflet)
@@ -9,7 +9,7 @@ const map = L.map('map-canvas')
     makeAdFormActive();
     makeFilterFormActive();
   })
-  .setView(DEFAULT_COORDINATES, 12.5);
+  .setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
 
 // Иницализация работы карты (OpenStreetMap)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,7 +33,6 @@ const pinIcon = L.icon({
 
 // Добавление временных точек
 generateRealEstates(OBJECTS_QUANTITY).forEach((realEstate) => {
-
   const marker = L.marker(
     {
       lat: realEstate.location.lat,
@@ -56,8 +55,12 @@ const mainMarker = L.marker(
   }
 );
 
+// Сброс метки до изначального положения
+const resetMainMarker = () => {
+  mainMarker.setLatLng(DEFAULT_COORDINATES);
+  map.setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
+};
+
 mainMarker.addTo(map);
 
-export {mainMarker};
-
-
+export {mainMarker, resetMainMarker};
