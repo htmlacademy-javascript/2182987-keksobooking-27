@@ -17,8 +17,8 @@ const sendOfferForm = (evt, onSuccess, onError) => {
     .then(() => {
       onSuccess();
     })
-    .catch(() => {
-      onError();
+    .catch((error) => {
+      onError(error.message);
     });
 };
 

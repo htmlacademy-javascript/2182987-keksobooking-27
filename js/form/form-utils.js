@@ -2,7 +2,7 @@ import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
 import {mainMarker, resetMainMarker} from './map.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
-import {showSuccessModal} from './modals.js';
+import {showSuccessModal, showErrorModal} from './modals.js';
 
 const body = document.querySelector('body');
 const adForm = document.querySelector('.ad-form');
@@ -139,7 +139,8 @@ const addOfferFormSubmitListener = () => {
         adFromReset();
         showSuccessModal();
       },
-      () => {
+      (message) => {
+        showErrorModal(message);
       });
   });
 };

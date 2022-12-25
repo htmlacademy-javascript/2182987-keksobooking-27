@@ -29,4 +29,7 @@ const createLocation = () => ({
   lng:  getRandomFloat(139.70000, 139.80000, 5)
 });
 
-export {getRandomInt, getRandomFloat, createLocation};
+// Проверка нажатой клавиши Esc
+const isEscape = (evt) => evt.key === 'Escape';
+
+export {getRandomInt, getRandomFloat, createLocation, isEscape};
