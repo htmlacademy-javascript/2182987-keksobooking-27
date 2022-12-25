@@ -1,6 +1,6 @@
 import {
-  adChangeTypeListener,
-  adChangeTimeListeners,
+  addChangeTypeListener,
+  addChangeTimeListeners,
   setDefaultAddressValue,
   addLMarkerMoveListener,
   addChangePriceSliderListener,
@@ -10,10 +10,10 @@ import './validation.js';
 import {initPriceSlider} from './priceSlider.js';
 
 // Прослушка смены типа объявления. Изменение параметров.
-adChangeTypeListener();
+addChangeTypeListener();
 
 // Прослушка смены времени - связывание селектов
-adChangeTimeListeners();
+addChangeTimeListeners();
 
 // Дефолтное значение для поля локации
 setDefaultAddressValue();

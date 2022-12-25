@@ -45,12 +45,12 @@ const onTypeChange = (evt) => {
   updatePriceSlider(+priceInput.getAttribute('min'));
 };
 
-const adChangeTypeListener = () => {
+const addChangeTypeListener = () => {
   typeSelect.addEventListener('change', onTypeChange);
 };
 
 // Синхрониция полей въезда и выезда
-const adChangeTimeListeners = () => {
+const addChangeTimeListeners = () => {
   [timeinSelect, timeoutSelect].forEach((select) => {
     select.addEventListener('change', (evt) => {
       if(evt.target === timeinSelect) {
@@ -93,8 +93,8 @@ export {
   makeAdFormActive,
   makeFilterFormDisable,
   makeFilterFormActive,
-  adChangeTypeListener,
-  adChangeTimeListeners,
+  addChangeTypeListener,
+  addChangeTimeListeners,
   adForm,
   priceInput,
   typeSelect,
