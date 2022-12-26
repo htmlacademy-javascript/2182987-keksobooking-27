@@ -1,7 +1,9 @@
+import {API_ADDRESS} from '../common/params.js';
+
 const sendOfferForm = (evt, onSuccess, onError) => {
   const formData = new FormData(evt.target);
   fetch(
-    'https://27.javascript.pages.academy/keksobooking',
+    API_ADDRESS,
     {
       method: 'POST',
       body: formData
@@ -23,7 +25,7 @@ const sendOfferForm = (evt, onSuccess, onError) => {
 };
 
 const getOffers = (onSuccess, onError) => {
-  fetch('https://27.javascript.pages.academy/keksobooking/data')
+  fetch(`${API_ADDRESS}/data`)
     .then((response) => {
       if(response.ok) {
         return response.json();

@@ -1,5 +1,5 @@
 import {makeAdFormActive, makeFilterFormActive} from './form-utils.js';
-import {DEFAULT_COORDINATES, DEFAULT_ZOOM} from '../common/params.js';
+import {DEFAULT_COORDINATES, DEFAULT_ZOOM, OBJECTS_QUANTITY} from '../common/params.js';
 import {createBalloonContent} from '../offers/render.js';
 import {getOffers} from './api.js';
 import {onDataError} from './modals.js';
@@ -33,7 +33,7 @@ const pinIcon = L.icon({
 });
 
 getOffers((offers) => {
-  offers.forEach((offer) => {
+  offers.slice(0, OBJECTS_QUANTITY).forEach((offer) => {
     const marker = L.marker(
       {
         lat: offer.location.lat,
