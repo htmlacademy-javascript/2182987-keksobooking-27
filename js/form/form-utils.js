@@ -93,6 +93,7 @@ const addLMarkerMoveListener = () => {
 const addChangePriceSliderListener = () => {
   priceSlider.noUiSlider.on('slide', () => {
     priceInput.value = +priceSlider.noUiSlider.get() ? +priceSlider.noUiSlider.get() : '';
+    pristine.validate(priceInput);
   });
 };
 

@@ -33,7 +33,7 @@ const pinIcon = L.icon({
 });
 
 getOffers((offers) => {
-  offers.forEach((offer, i) => {
+  offers.forEach((offer) => {
     const marker = L.marker(
       {
         lat: offer.location.lat,
