@@ -1,7 +1,8 @@
 import {makeAdFormActive, makeFilterFormActive} from './form-utils.js';
-import {generateRealEstates} from '../temp/mocks.js';
-import {DEFAULT_COORDINATES, OBJECTS_QUANTITY, DEFAULT_ZOOM} from '../common/params.js';
+import {DEFAULT_COORDINATES, DEFAULT_ZOOM} from '../common/params.js';
 import {createBalloonContent} from '../offers/render.js';
+import {getOffers} from './api.js';
+import {onDataError} from './modals.js';
 
 // Иницализация работы с координарами (Leaflet)
 const map = L.map('map-canvas')
@@ -31,19 +32,22 @@ const pinIcon = L.icon({
   iconAnchor: [26, 52]
 });
 
-// Добавление временных точек
-generateRealEstates(OBJECTS_QUANTITY).forEach((realEstate) => {
-  const marker = L.marker(
-    {
-      lat: realEstate.location.lat,
-      lng: realEstate.location.lng
-    },
-    {
-      draggable: false,
-      icon: offersIcon
-    }
-  );
-  marker.addTo(map).bindPopup(createBalloonContent(realEstate));
+getOffers((offers) => {
+  offers.forEach((offer, i) => {
+    const marker = L.marker(
+      {
+        lat: offer.location.lat,
+        lng: offer.location.lng
+      },
+      {
+        draggable: false,
+        icon: offersIcon
+      }
+    );
+    marker.addTo(map).bindPopup(createBalloonContent(offer));
+  });
+}, () => {
+  onDataError();
 });
 
 // Параметры основной метки

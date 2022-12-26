@@ -95,7 +95,7 @@ const DEFAULT_COORDINATES = {
 
 const MAX_PRICE = 100000;
 
-const DEFAULT_ZOOM = 12.5;
+const DEFAULT_ZOOM = 12.8;
 
 export {
   REAL_ESTATE_TYPES,

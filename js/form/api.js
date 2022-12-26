@@ -22,5 +22,22 @@ const sendOfferForm = (evt, onSuccess, onError) => {
     });
 };
 
-export {sendOfferForm};
+const getOffers = (onSuccess, onError) => {
+  fetch('https://27.javascript.pages.academy/keksobooking/data')
+    .then((response) => {
+      if(response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Ошибка получения данных');
+      }
+    })
+    .then((data) => {
+      onSuccess(data);
+    })
+    .catch((error) => {
+      onError(error.message);
+    });
+};
+
+export {sendOfferForm, getOffers};
 
