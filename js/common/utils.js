@@ -32,4 +32,24 @@ const createLocation = () => ({
 // Проверка нажатой клавиши Esc
 const isEscape = (evt) => evt.key === 'Escape';
 
-export {getRandomInt, getRandomFloat, createLocation, isEscape};
+/*Функции оптимизации. Источник: HTML Academy*/
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+const throttle = (callback, delayBetweenFrames) => {
+  let lastTime = 0;
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+};
+
+export {getRandomInt, getRandomFloat, createLocation, isEscape, debounce, throttle};
