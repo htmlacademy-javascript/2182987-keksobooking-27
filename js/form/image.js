@@ -1,5 +1,4 @@
-const photoInput = document.querySelector('#images');
-const photoHolder = document.querySelector('.ad-form__photo');
+import {photoInput, photoHolder} from './form-utils.js';
 
 const onPhotoChange = (evt) => {
   const img = document.createElement('img');

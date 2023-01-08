@@ -20,6 +20,8 @@ const filterPriceSelect = document.querySelector('#housing-price');
 const filterRoomsSelect = document.querySelector('#housing-rooms');
 const filterGuestsSelect = document.querySelector('#housing-guests');
 const filterFeatures = document.querySelector('#housing-features');
+const photoInput = document.querySelector('#images');
+const photoHolder = document.querySelector('.ad-form__photo');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -108,7 +110,7 @@ const addChangePriceInputListener = () => {
   });
 };
 
-const resePriceInput = () => {
+const resetPriceInput = () => {
   priceInput.setAttribute('placeholder', OfferTypes.FLAT.MIN_VALUE);
   priceInput.setAttribute('min', OfferTypes.FLAT.MIN_VALUE);
 };
@@ -120,7 +122,8 @@ const adFromReset = () => {
   resetPriceSlider();
   setDefaultAddressValue();
   resetMainMarker();
-  resePriceInput();
+  resetPriceInput();
+  photoHolder.querySelector('img').remove();
 };
 
 const addResetListener = () => {
@@ -177,5 +180,7 @@ export {
   filterPriceSelect,
   filterRoomsSelect,
   filterGuestsSelect,
-  filterFeatures
+  filterFeatures,
+  photoHolder,
+  photoInput
 };
