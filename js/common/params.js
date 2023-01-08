@@ -99,6 +99,21 @@ const DEFAULT_ZOOM = 12.8;
 
 const API_ADDRESS = 'https://27.javascript.pages.academy/keksobooking';
 
+const PRICE_RANGE = {
+  LOW : {
+    MIN: 0,
+    MAX: 10000
+  },
+  MIDDLE : {
+    MIN: 10000,
+    MAX: 50000
+  },
+  HIGH : {
+    MIN: 50000,
+    MAX: MAX_PRICE
+  },
+};
+
 export {
   REAL_ESTATE_TYPES,
   TIMES, FEATURES,
@@ -109,5 +124,6 @@ export {
   DEFAULT_COORDINATES,
   MAX_PRICE,
   DEFAULT_ZOOM,
-  API_ADDRESS
+  API_ADDRESS,
+  PRICE_RANGE
 };

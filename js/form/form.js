@@ -10,6 +10,8 @@ import {
 } from './form-utils.js';
 import './validation.js';
 import {initPriceSlider} from './priceSlider.js';
+import {addFilterChangeListener} from './map.js';
+
 
 // Прослушка смены типа объявления. Изменение параметров.
 addChangeTypeListener();
@@ -35,3 +37,6 @@ addOfferFormSubmitListener();
 
 // Очистка формы
 addResetListener();
+
+// Прослушка изменений фильтра
+addFilterChangeListener();

@@ -6,7 +6,6 @@ import {showSuccessModal, showErrorModal} from './modals.js';
 
 const body = document.querySelector('body');
 const adForm = document.querySelector('.ad-form');
-const filtersForm = document.querySelector('.map__filters');
 const priceInput = document.querySelector('#price');
 const typeSelect = document.querySelector('#type');
 const timeinSelect = document.querySelector('#timein');
@@ -14,7 +13,12 @@ const timeoutSelect = document.querySelector('#timeout');
 const addressInput = document.querySelector('#address');
 const priceSlider = document.querySelector('.ad-form__slider');
 const resetBtn = document.querySelector('.ad-form__reset');
-
+const filtersForm = document.querySelector('.map__filters');
+const filterTypeSelect = document.querySelector('#housing-type');
+const filterPriceSelect = document.querySelector('#housing-price');
+const filterRoomsSelect = document.querySelector('#housing-rooms');
+const filterGuestsSelect = document.querySelector('#housing-guests');
+const filterFeatures = document.querySelector('#housing-features');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -165,5 +169,11 @@ export {
   addChangePriceInputListener,
   addOfferFormSubmitListener,
   addResetListener,
-  pristine
+  pristine,
+  filtersForm,
+  filterTypeSelect,
+  filterPriceSelect,
+  filterRoomsSelect,
+  filterGuestsSelect,
+  filterFeatures
 };
