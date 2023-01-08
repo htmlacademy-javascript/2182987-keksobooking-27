@@ -114,6 +114,8 @@ const PRICE_RANGE = {
   },
 };
 
+const DEFAULT_AVATAR_SRC = 'img/muffin-grey.svg';
+
 export {
   REAL_ESTATE_TYPES,
   TIMES, FEATURES,
@@ -125,5 +127,6 @@ export {
   MAX_PRICE,
   DEFAULT_ZOOM,
   API_ADDRESS,
-  PRICE_RANGE
+  PRICE_RANGE,
+  DEFAULT_AVATAR_SRC
 };

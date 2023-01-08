@@ -1,4 +1,4 @@
-import {OfferTypes, DEFAULT_COORDINATES} from '../common/params.js';
+import {OfferTypes, DEFAULT_COORDINATES, DEFAULT_AVATAR_SRC} from '../common/params.js';
 import {mainMarker, resetMainMarker} from './map.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
@@ -22,6 +22,8 @@ const filterGuestsSelect = document.querySelector('#housing-guests');
 const filterFeatures = document.querySelector('#housing-features');
 const photoInput = document.querySelector('#images');
 const photoHolder = document.querySelector('.ad-form__photo');
+const avatarInput = document.querySelector('#avatar');
+const avatarImage = document.querySelector('.ad-form-header__preview img');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -123,7 +125,10 @@ const adFromReset = () => {
   setDefaultAddressValue();
   resetMainMarker();
   resetPriceInput();
-  photoHolder.querySelector('img').remove();
+  if(photoHolder.querySelector('img')) {
+    photoHolder.querySelector('img').remove();
+  }
+  avatarImage.src = DEFAULT_AVATAR_SRC;
 };
 
 const addResetListener = () => {
@@ -182,5 +187,7 @@ export {
   filterGuestsSelect,
   filterFeatures,
   photoHolder,
-  photoInput
+  photoInput,
+  avatarInput,
+  avatarImage
 };

@@ -1,4 +1,4 @@
-import {photoInput, photoHolder} from './form-utils.js';
+import {photoInput, photoHolder, avatarInput, avatarImage} from './form-utils.js';
 
 const onPhotoChange = (evt) => {
   const img = document.createElement('img');
@@ -21,4 +21,14 @@ const addPhotoChangingListener = () => {
   });
 };
 
-export {addPhotoChangingListener};
+const onAvatarChange = (evt) => {
+  avatarImage.src = URL.createObjectURL(evt.target.files[0]);
+};
+
+const addAvatarChangingListener = () => {
+  avatarInput.addEventListener('change', (evt) => {
+    onAvatarChange(evt);
+  });
+};
+
+export {addPhotoChangingListener, addAvatarChangingListener};
