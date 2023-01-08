@@ -24,6 +24,7 @@ const photoInput = document.querySelector('#images');
 const photoHolder = document.querySelector('.ad-form__photo');
 const avatarInput = document.querySelector('#avatar');
 const avatarImage = document.querySelector('.ad-form-header__preview img');
+const submintButton = document.querySelector('.ad-form__submit');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -147,14 +148,18 @@ const addOfferFormSubmitListener = () => {
       pristine.getErrors();
       return;
     }
+
+    submintButton.setAttribute('disabled', true);
     sendOfferForm(
       evt,
       () => {
         adFromReset();
         showSuccessModal();
+        submintButton.removeAttribute('disabled');
       },
       (message) => {
         showErrorModal(message);
+        submintButton.removeAttribute('disabled');
       });
   });
 };
