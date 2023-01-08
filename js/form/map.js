@@ -125,10 +125,8 @@ const getOfferRank = (offer) => {
 };
 
 const checkFilterConditions = (offer) => {
-  let condition = true;
-
   if(offer.offer.type !== filterTypeSelect.value && filterTypeSelect.value !== 'any') {
-    condition = false;
+    return false;
   }
 
   if(filterPriceSelect.value !== 'any') {
@@ -139,35 +137,47 @@ const checkFilterConditions = (offer) => {
   }
 
   if(offer.offer.rooms !== +filterRoomsSelect.value && filterRoomsSelect.value !== 'any') {
-    condition = false;
+    return false;
   }
 
   if(offer.offer.guests !== +filterGuestsSelect.value && filterGuestsSelect.value !== 'any') {
-    condition = false;
+    return false;
   }
 
-  const checkedFeatures = [...document.querySelectorAll('.map__checkbox:checked')].map((element) => element.value);
-  if(checkedFeatures.length && offer.offer.features) {
-    const commonElements = checkedFeatures.filter((element) => offer.offer.features.includes(element));
-    if(!commonElements.length){
+  const checkedFeatures = Array.from(document.querySelectorAll('.map__checkbox:checked'));
+
+  if(!offer.offer.features && checkedFeatures.length) {
+    return false;
+  }
+
+  /*TODO Исправить*/
+  /*checkedFeatures.forEach((element) => {
+    if(!offer.offer.features.includes(element.value)) {
       return false;
     }
-  }
-
-  return condition;
+  });*/
+  return true;
 };
 
 const compareRank = (first, second) => {
-  const a = getOfferRank(first);
-  const b = getOfferRank(second);
-  return b - a;
+  return getOfferRank(second) - getOfferRank(first);
 };
 
 const onFilterChange = () => {
   getOffers((offers) => {
     deleteMarkers();
-    const offersToShow = offers.slice().filter(checkFilterConditions).sort(compareRank);
-    addMarkersToMap(offersToShow, offersToShow.length <= OBJECTS_QUANTITY ? offersToShow.length : OBJECTS_QUANTITY);
+    const offersToShow = [];
+    for(let i = 0; i < offers.length; i++) {
+      if(checkFilterConditions(offers[i])){
+        offersToShow.push(offers[i]);
+      }
+      if(offersToShow.length === OBJECTS_QUANTITY) {
+        break;
+      }
+    }
+    addMarkersToMap(
+      offersToShow.slice().filter(compareRank),
+      offersToShow.length <= OBJECTS_QUANTITY ? offersToShow.length : OBJECTS_QUANTITY);
   }, () => {
     onDataError();
   });
