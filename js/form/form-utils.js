@@ -3,6 +3,7 @@ import {mainMarker, resetMainMarker} from './map.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
 import {showSuccessModal, showErrorModal} from './modals.js';
+import {debounce} from '../common/utils.js';
 
 const body = document.querySelector('body');
 const adForm = document.querySelector('.ad-form');
@@ -95,10 +96,10 @@ const addLMarkerMoveListener = () => {
 
 /* СВЯЗЫВАНИЕ ПОЛЗУНКА И ПОЛЯ ЦЕНЫ */
 const addChangePriceSliderListener = () => {
-  priceSlider.noUiSlider.on('slide', () => {
+  priceSlider.noUiSlider.on('slide', debounce(() => {
     priceInput.value = +priceSlider.noUiSlider.get() ? +priceSlider.noUiSlider.get() : '';
     pristine.validate(priceInput);
-  });
+  }, 20));
 };
 
 const addChangePriceInputListener = () => {
