@@ -143,32 +143,31 @@ const checkFilterConditions = (offer) => {
   if(offer.offer.guests !== +filterGuestsSelect.value && filterGuestsSelect.value !== 'any') {
     return false;
   }
-
-  const checkedFeatures = Array.from(document.querySelectorAll('.map__checkbox:checked'));
-
-  if(!offer.offer.features && checkedFeatures.length) {
-    return false;
-  }
-
-  /*TODO Исправить*/
-  /*checkedFeatures.forEach((element) => {
-    if(!offer.offer.features.includes(element.value)) {
-      return false;
-    }
-  });*/
   return true;
 };
 
-const compareRank = (first, second) => {
-  return getOfferRank(second) - getOfferRank(first);
+const checkFilterFeatures = (offer) => {
+  const checkedFeatures = Array.from(document.querySelectorAll('.map__checkbox:checked'));
+
+  if(!checkedFeatures.length) {
+    return true;
+  }
+
+  if(!offer.offer.features) {
+    return false;
+  }
+
+  return checkedFeatures.every((feature) => offer.offer.features.includes(feature.value));
 };
+
+const compareRank = (first, second) => getOfferRank(second) - getOfferRank(first);
 
 const onFilterChange = () => {
   getOffers((offers) => {
     deleteMarkers();
     const offersToShow = [];
     for(let i = 0; i < offers.length; i++) {
-      if(checkFilterConditions(offers[i])){
+      if(checkFilterConditions(offers[i]) && checkFilterFeatures(offers[i])){
         offersToShow.push(offers[i]);
       }
       if(offersToShow.length === OBJECTS_QUANTITY) {
@@ -176,7 +175,7 @@ const onFilterChange = () => {
       }
     }
     addMarkersToMap(
-      offersToShow.slice().filter(compareRank),
+      offersToShow.slice().sort(compareRank),
       offersToShow.length <= OBJECTS_QUANTITY ? offersToShow.length : OBJECTS_QUANTITY);
   }, () => {
     onDataError();
