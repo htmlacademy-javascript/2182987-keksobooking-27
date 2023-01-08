@@ -16,6 +16,7 @@ import {
 import {createBalloonContent} from '../offers/render.js';
 import {getOffers} from './api.js';
 import {onDataError} from './modals.js';
+import {debounce} from '../common/utils.js';
 
 const markers = [];
 
@@ -183,9 +184,9 @@ const onFilterChange = () => {
 };
 
 const addFilterChangeListener = () => {
-  filtersForm.addEventListener('change', () => {
+  filtersForm.addEventListener('change', debounce(() => {
     onFilterChange();
-  });
+  }));
 };
 
 export {mainMarker, resetMainMarker, map, markers, addFilterChangeListener};
