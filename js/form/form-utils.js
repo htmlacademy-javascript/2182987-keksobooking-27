@@ -1,5 +1,5 @@
 import {OfferTypes, DEFAULT_COORDINATES, DEFAULT_AVATAR_SRC} from '../common/params.js';
-import {mainMarker, resetMainMarker} from './map.js';
+import {mainMarker, resetMainMarker, setDefaultMarkers} from './map.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
 import {showSuccessModal, showErrorModal} from './modals.js';
@@ -24,7 +24,7 @@ const photoInput = document.querySelector('#images');
 const photoHolder = document.querySelector('.ad-form__photo');
 const avatarInput = document.querySelector('#avatar');
 const avatarImage = document.querySelector('.ad-form-header__preview img');
-const submintButton = document.querySelector('.ad-form__submit');
+const submitButton = document.querySelector('.ad-form__submit');
 
 // Инициализация валидации
 const pristine = new Pristine(
@@ -126,6 +126,7 @@ const adFromReset = () => {
   setDefaultAddressValue();
   resetMainMarker();
   resetPriceInput();
+  setDefaultMarkers();
   if(photoHolder.querySelector('img')) {
     photoHolder.querySelector('img').remove();
   }
@@ -149,17 +150,17 @@ const addOfferFormSubmitListener = () => {
       return;
     }
 
-    submintButton.setAttribute('disabled', true);
+    submitButton.setAttribute('disabled', true);
     sendOfferForm(
       evt,
       () => {
         adFromReset();
         showSuccessModal();
-        submintButton.removeAttribute('disabled');
+        submitButton.removeAttribute('disabled');
       },
       (message) => {
         showErrorModal(message);
-        submintButton.removeAttribute('disabled');
+        submitButton.removeAttribute('disabled');
       });
   });
 };

@@ -21,12 +21,7 @@ import {debounce} from '../common/utils.js';
 const markers = [];
 
 // Иницализация работы с координарами (Leaflet)
-const map = L.map('map-canvas')
-  .on('load', () => {
-    makeAdFormActive();
-    makeFilterFormActive();
-  })
-  .setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
+const map = L.map('map-canvas');
 
 // Иницализация работы карты (OpenStreetMap)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,11 +60,20 @@ const addMarkersToMap = (offersList, limit = OBJECTS_QUANTITY) => {
   });
 };
 
-getOffers((offers) => {
-  addMarkersToMap(offers);
-}, () => {
-  onDataError();
-});
+const deleteMarkers = () => {
+  markers.forEach((marker) => {
+    map.removeLayer(marker);
+  });
+};
+
+const setDefaultMarkers = () =>{
+  deleteMarkers();
+  getOffers((offers) => {
+    addMarkersToMap(offers);
+  }, () => {
+    onDataError();
+  });
+};
 
 // Параметры основной метки
 const mainMarker = L.marker(
@@ -80,6 +84,12 @@ const mainMarker = L.marker(
   }
 );
 
+map.on('load', () => {
+  makeAdFormActive();
+  makeFilterFormActive();
+  setDefaultMarkers();
+}).setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
+
 // Сброс метки до изначального положения
 const resetMainMarker = () => {
   mainMarker.setLatLng(DEFAULT_COORDINATES);
@@ -89,11 +99,6 @@ const resetMainMarker = () => {
 
 mainMarker.addTo(map);
 
-const deleteMarkers = () => {
-  markers.forEach((marker) => {
-    map.removeLayer(marker);
-  });
-};
 
 const getOfferRank = (offer) => {
   let rank = 0;
@@ -189,4 +194,4 @@ const addFilterChangeListener = () => {
   }));
 };
 
-export {mainMarker, resetMainMarker, map, markers, addFilterChangeListener};
+export {mainMarker, resetMainMarker, map, markers, addFilterChangeListener, setDefaultMarkers};
