@@ -70,6 +70,7 @@ const setDefaultMarkers = () =>{
   deleteMarkers();
   getOffers((offers) => {
     addMarkersToMap(offers);
+    makeFilterFormActive();
   }, () => {
     onDataError();
   });
@@ -86,7 +87,6 @@ const mainMarker = L.marker(
 
 map.on('load', () => {
   makeAdFormActive();
-  makeFilterFormActive();
   setDefaultMarkers();
 }).setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
 
