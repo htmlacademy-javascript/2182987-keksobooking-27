@@ -21,13 +21,13 @@ import {debounce} from '../common/utils.js';
 const markers = [];
 
 // Иницализация работы с координарами (Leaflet)
-const map = L.map('map-canvas');
+const mapAndFilters = L.map('map-canvas');
 
 // Иницализация работы карты (OpenStreetMap)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+}).addTo(mapAndFilters);
 
 // Параметры иконки объявлений
 const offersIcon = L.icon({
@@ -56,13 +56,13 @@ const addMarkersToMap = (offersList, limit = OBJECTS_QUANTITY) => {
       }
     );
     markers.push(marker);
-    marker.addTo(map).bindPopup(createBalloonContent(offersList[index]));
+    marker.addTo(mapAndFilters).bindPopup(createBalloonContent(offersList[index]));
   });
 };
 
 const deleteMarkers = () => {
   markers.forEach((marker) => {
-    map.removeLayer(marker);
+    mapAndFilters.removeLayer(marker);
   });
 };
 
@@ -85,7 +85,7 @@ const mainMarker = L.marker(
   }
 );
 
-map.on('load', () => {
+mapAndFilters.on('load', () => {
   makeAdFormActive();
   setDefaultMarkers();
 }).setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
@@ -93,11 +93,11 @@ map.on('load', () => {
 // Сброс метки до изначального положения
 const resetMainMarker = () => {
   mainMarker.setLatLng(DEFAULT_COORDINATES);
-  map.setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
-  map.closePopup();
+  mapAndFilters.setView(DEFAULT_COORDINATES, DEFAULT_ZOOM);
+  mapAndFilters.closePopup();
 };
 
-mainMarker.addTo(map);
+mainMarker.addTo(mapAndFilters);
 
 
 const getOfferRank = (offer) => {
@@ -171,18 +171,18 @@ const compareRank = (first, second) => getOfferRank(second) - getOfferRank(first
 const onFilterChange = () => {
   getOffers((offers) => {
     deleteMarkers();
-    const offersToShow = [];
+    const toShowOffers = [];
     for(let i = 0; i < offers.length; i++) {
       if(checkFilterConditions(offers[i]) && checkFilterFeatures(offers[i])){
-        offersToShow.push(offers[i]);
+        toShowOffers.push(offers[i]);
       }
-      if(offersToShow.length === OBJECTS_QUANTITY) {
+      if(toShowOffers.length === OBJECTS_QUANTITY) {
         break;
       }
     }
     addMarkersToMap(
-      offersToShow.slice().sort(compareRank),
-      offersToShow.length <= OBJECTS_QUANTITY ? offersToShow.length : OBJECTS_QUANTITY);
+      toShowOffers.slice().sort(compareRank),
+      toShowOffers.length <= OBJECTS_QUANTITY ? toShowOffers.length : OBJECTS_QUANTITY);
   }, () => {
     onDataError();
   });
@@ -194,4 +194,4 @@ const addFilterChangeListener = () => {
   }));
 };
 
-export {mainMarker, resetMainMarker, map, markers, addFilterChangeListener, setDefaultMarkers};
+export {mainMarker, resetMainMarker, mapAndFilters, markers, addFilterChangeListener, setDefaultMarkers};

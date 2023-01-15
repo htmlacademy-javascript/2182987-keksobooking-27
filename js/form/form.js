@@ -10,7 +10,7 @@ import {
 } from './form-utils.js';
 import './validation.js';
 import {initPriceSlider} from './priceSlider.js';
-import {addFilterChangeListener} from './map.js';
+import {addFilterChangeListener} from './map-and-filters.js';
 import {addPhotoChangingListener, addAvatarChangingListener} from './image.js';
 
 // Прослушка смены типа объявления. Изменение параметров.

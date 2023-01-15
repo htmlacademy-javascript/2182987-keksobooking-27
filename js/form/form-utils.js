@@ -1,5 +1,5 @@
 import {OfferTypes, DEFAULT_COORDINATES, DEFAULT_AVATAR_SRC} from '../common/params.js';
-import {mainMarker, resetMainMarker, setDefaultMarkers} from './map.js';
+import {mainMarker, resetMainMarker, setDefaultMarkers} from './map-and-filters.js';
 import {updatePriceSlider, resetPriceSlider} from './priceSlider.js';
 import {sendOfferForm} from './api.js';
 import {showSuccessModal, showErrorModal} from './modals.js';
@@ -118,7 +118,7 @@ const resetPriceInput = () => {
   priceInput.setAttribute('min', OfferTypes.FLAT.MIN_VALUE);
 };
 
-const adFromReset = () => {
+const resetAdForm = () => {
   adForm.reset();
   filtersForm.reset();
   pristine.reset();
@@ -136,7 +136,7 @@ const adFromReset = () => {
 const addResetListener = () => {
   resetBtn.addEventListener('click', (evt) => {
     evt.preventDefault();
-    adFromReset();
+    resetAdForm();
   });
 };
 
@@ -154,7 +154,7 @@ const addOfferFormSubmitListener = () => {
     sendOfferForm(
       evt,
       () => {
-        adFromReset();
+        resetAdForm();
         showSuccessModal();
         submitButton.removeAttribute('disabled');
       },

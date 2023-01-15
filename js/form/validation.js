@@ -6,20 +6,20 @@ const capacity = document.querySelector('#capacity');
 
 /* ВАЛИДАЦИЯ  СВЯЗАННЫХ ПОЛЕЙ - ГОСТЕЙ И КОМНАТ */
 // Тексты ошибок
-const makeRoomsErrorText = () => `Для указанного количества гостей, вы можете выбрать одно из следующих значений
+const getRoomsErrorText = () => `Для указанного количества гостей, вы можете выбрать одно из следующих значений
   для комнат: ${GUESTS_OPTIONS_QTY[capacity.value]}.`;
-const makeGuestsErrorText = () => `Для указанного количества комнат, вы можете выбрать одно из следующих значений
+const getGuestsErrorText = () => `Для указанного количества комнат, вы можете выбрать одно из следующих значений
   для кол-ва гостей: ${ROOMS_OPTIONS_QTY[rooms.value]}.`;
 
 
 // Добавление валидаторов
 pristine.addValidator(rooms,
   (value) => ROOMS_OPTIONS_QTY[value].includes(capacity.value),
-  makeRoomsErrorText
+  getRoomsErrorText
 );
 pristine.addValidator(capacity,
   (value) => GUESTS_OPTIONS_QTY[value].includes(rooms.value),
-  makeGuestsErrorText
+  getGuestsErrorText
 );
 
 // Связывание полей через прослушку изменений
