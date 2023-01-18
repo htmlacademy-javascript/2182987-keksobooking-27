@@ -102,6 +102,7 @@ mainMarker.addTo(mapAndFilters);
 
 const getOfferRank = (offer) => {
   let rank = 0;
+  const checkedFeatures = [...document.querySelectorAll('.map__checkbox:checked')].map((element) => element.value);
 
   if(offer.offer.type === filterTypeSelect.value) {
     rank += 1;
@@ -122,7 +123,6 @@ const getOfferRank = (offer) => {
     rank += 1;
   }
 
-  const checkedFeatures = [...document.querySelectorAll('.map__checkbox:checked')].map((element) => element.value);
   if(checkedFeatures.length && offer.offer.features) {
     const commonElements = checkedFeatures.filter((element) => offer.offer.features.includes(element));
     rank += commonElements.length;
