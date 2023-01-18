@@ -7,7 +7,7 @@ const createBalloonContent = (realEstate) => {
   popup.querySelector('.popup__title').textContent = realEstate.offer.title;
   popup.querySelector('.popup__text--address').textContent = realEstate.offer.address;
   popup.querySelector('.popup__text--price').textContent = `${realEstate.offer.price} ₽/ночь`;
-  popup.querySelector('.popup__type').textContent = OfferTypes[(realEstate.offer.type).toUpperCase()].NAME;
+  popup.querySelector('.popup__type').textContent = OfferTypes[(realEstate.offer.type).toUpperCase()].name;
   popup.querySelector('.popup__text--capacity').textContent = `${realEstate.offer.rooms} комнаты для ${realEstate.offer.guests} гостей`;
   popup.querySelector('.popup__text--time').textContent = `Заезд после ${realEstate.offer.checkin}, выезд до ${realEstate.offer.checkout}`;
   // Описание

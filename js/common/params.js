@@ -69,24 +69,24 @@ const DEFAULT_AVATAR_SRC = 'img/muffin-grey.svg';
 // Типы предложений
 const OfferTypes = {
   FLAT: {
-    NAME: 'Квартира',
-    MIN_VALUE: 1000
+    name: 'Квартира',
+    minValue: 1000
   },
   BUNGALOW: {
-    NAME: 'Бунгало',
-    MIN_VALUE: 0
+    name: 'Бунгало',
+    minValue: 0
   },
   HOUSE: {
-    NAME: 'Дом',
-    MIN_VALUE: 5000
+    name: 'Дом',
+    minValue: 5000
   },
   PALACE: {
-    NAME: 'Дворец',
-    MIN_VALUE: 10000
+    name: 'Дворец',
+    minValue: 10000
   },
   HOTEL: {
-    NAME: 'Отель',
-    MIN_VALUE: 3000
+    name: 'Отель',
+    minValue: 3000
   },
 };
 
