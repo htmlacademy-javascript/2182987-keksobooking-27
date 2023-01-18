@@ -65,8 +65,8 @@ const makeFilterFormActive = () => {
 };
 
 const onTypeChange = (evt) => {
-  priceInput.setAttribute('placeholder', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
-  priceInput.setAttribute('min', OfferTypes[(evt.target.value).toUpperCase()].MIN_VALUE);
+  priceInput.setAttribute('placeholder', OfferTypes[(evt.target.value).toUpperCase()].minValue);
+  priceInput.setAttribute('min', OfferTypes[(evt.target.value).toUpperCase()].minValue);
   updatePriceSlider(+priceInput.getAttribute('min'));
 };
 
@@ -114,8 +114,8 @@ const addChangePriceInputListener = () => {
 };
 
 const resetPriceInput = () => {
-  priceInput.setAttribute('placeholder', OfferTypes.FLAT.MIN_VALUE);
-  priceInput.setAttribute('min', OfferTypes.FLAT.MIN_VALUE);
+  priceInput.setAttribute('placeholder', OfferTypes.FLAT.minValue);
+  priceInput.setAttribute('min', OfferTypes.FLAT.minValue);
 };
 
 const resetAdForm = () => {

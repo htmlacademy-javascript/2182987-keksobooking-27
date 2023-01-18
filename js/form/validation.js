@@ -39,10 +39,10 @@ capacity.addEventListener('change', onRoomCapacityChange);
 
 /*--- ВАЛИДАЦИЯ  МИНИМАЛЬНОЙ ЦЕНЫ  ---*/
 // Функция проверки
-const checkMinPrice = () => +OfferTypes[(typeSelect.value).toUpperCase()].MIN_VALUE <= priceInput.value;
+const checkMinPrice = () => +OfferTypes[(typeSelect.value).toUpperCase()].minValue <= priceInput.value;
 
 // Текст ошибки
-const createMinPriceErrorMsg = () => `Минимальная цена для категории ${OfferTypes[(typeSelect.value).toUpperCase()].NAME}:
+const createMinPriceErrorMsg = () => `Минимальная цена для категории ${OfferTypes[(typeSelect.value).toUpperCase()].name}:
     ${OfferTypes[(typeSelect.value).toUpperCase()].MIN_VALUE}`;
 
 // Добавление валидатора

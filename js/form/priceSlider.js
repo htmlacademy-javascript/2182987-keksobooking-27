@@ -6,7 +6,7 @@ const DEFAULT_SLIDER_OPTIONS = {
   step: 1,
   connect: 'lower',
   range: {
-    'min': OfferTypes.FLAT.MIN_VALUE,
+    'min': OfferTypes.FLAT.minValue,
     'max': MAX_PRICE
   }
 };
