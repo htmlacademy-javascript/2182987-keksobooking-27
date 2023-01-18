@@ -5,6 +5,8 @@ const successModalTemplate = document.querySelector('#success').content.querySel
 const successModal = successModalTemplate.cloneNode(true);
 const errorModalTemplate = document.querySelector('#error').content.querySelector('.error');
 const errorModal = errorModalTemplate.cloneNode(true);
+const successExist = document.querySelector('.success__message');
+const errorExist = document.querySelector('.error__message');
 
 const onSuccessModalClick = () => {
   successModal.remove();
@@ -19,9 +21,6 @@ const onErrorModalClick = () => {
 const onEscKeydown = (evt) => {
   if(isEscape(evt)) {
     evt.preventDefault();
-
-    const successExist = document.querySelector('.success__message');
-    const errorExist = document.querySelector('.error__message');
 
     if(successExist && !errorExist) {
       onSuccessModalClick();
